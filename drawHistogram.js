@@ -1,7 +1,11 @@
-
-let incomeChart; // Holds the chart instance to manage updates
+// let incomeChart; // Holds the chart instance to manage updates
 
 function drawIncomeHistogram(incomeDataByTract) {
+    if (!incomeDataByTract) {
+        console.error("Income data by tract is undefined or null.");
+        return; // Exit if no data provided
+    }
+
     const canvas = document.getElementById('incomeHistogram');
     if (!canvas) {
         console.error("Canvas element 'incomeHistogram' not found.");
@@ -11,11 +15,6 @@ function drawIncomeHistogram(incomeDataByTract) {
     if (!ctx) {
         console.error("Failed to get the canvas context.");
         return;
-    }
-
-    // Destroy the previous chart instance if it exists
-    if (incomeChart) {
-        incomeChart.destroy();
     }
 
     const incomeData = Object.values(incomeDataByTract).map(data => data.medianIncome).filter(income => income > 0);
@@ -49,3 +48,5 @@ function drawIncomeHistogram(incomeDataByTract) {
     // Create a new chart instance and store the reference
     incomeChart = new Chart(ctx, config);
 }
+
+// Remove any direct call to drawIncomeHistogram() here, or ensure it's called with valid data

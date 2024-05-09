@@ -50,3 +50,11 @@ function drawIncomeHistogram(incomeDataByTract) {
 }
 
 // Remove any direct call to drawIncomeHistogram() here, or ensure it's called with valid data
+function toggleChartVisibility() {
+    var chartContainer = document.getElementById('chartContainer');
+    if (chartContainer.style.display === 'none') {
+        chartContainer.style.display = 'block';
+    } else {
+        chartContainer.style.display = 'none';
+    }
+}

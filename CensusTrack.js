@@ -84,13 +84,12 @@ async function fetchLACensusTracts() {
 // This ensures that the map and income data are ready before fetching tracts
 map.on("load", async function () {
     try {
-        // Fetch income data first and store it globally or pass it to the tract fetching function
-        const incomeDataByTract = await fetchACSIncomeData();  // Ensure this is completed and fetch the income data
-        await fetchLACensusTracts();  // Now, fetch the tracts and enrich them with income data
-        
-        // After both datasets are ready, draw the histogram
+        const incomeDataByTract = await fetchACSIncomeData();
+        await fetchLACensusTracts();
+        // await fetchLACities();  // Fetch city data
         drawIncomeHistogram(incomeDataByTract);
     } catch (error) {
-        console.error("Error in map loading or income data fetching:", error);
+        console.error("Error in map loading or data fetching:", error);
     }
 });
+
